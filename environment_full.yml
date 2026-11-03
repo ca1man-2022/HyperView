@@ -1,9 +1,4 @@
-name: emodog
-channels:
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
-  - defaults
+name: hyperview
 dependencies:
   - _libgcc_mutex=0.1=main
   - _openmp_mutex=5.1=1_gnu
@@ -98,5 +93,3 @@ dependencies:
       - tzdata==2023.4
       - urllib3==1.26.13
       - wcwidth==0.2.13
-      - zipp==3.20.2
-prefix: /home/tingyicai/miniconda3/envs/emodog
