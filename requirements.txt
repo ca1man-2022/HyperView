@@ -1,0 +1,6 @@
+# Runtime dependencies for the data-preparation scripts (Python 3.8-3.11).
+# Versions retained from environment_full.yml; Python 3.10 is recommended.
+# Install the desired PyTorch CPU/CUDA build first; see README.md.
+numpy==1.24.1
+scipy==1.10.1
+torch==2.1.2

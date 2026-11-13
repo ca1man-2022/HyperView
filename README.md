@@ -15,12 +15,36 @@ Scripts to construct node-level hypergraph OOD benchmarks with feature, semantic
 
 ## Usage
 
+Use Python 3.10 in a fresh virtual environment (these pinned versions support
+Python 3.8-3.11, not 3.12+). The data-preparation scripts run on CPU:
+
 ```bash
+python3.10 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install torch==2.1.2 --index-url https://download.pytorch.org/whl/cpu
 python -m pip install -r requirements.txt
+python -m pip check
 python -m scripts.download_raw --dataset all
 python -m scripts.import_base pickles --directory data/raw/cocitation/cora --trusted-source --output data/base/cora.npz
 python -m scripts.generate_ood --input data/base/cora.npz --output data/generated/cora --shift all --seed 42
 ```
+
+On Windows, activate with `.venv\Scripts\activate` instead. For a CUDA 11.8
+PyTorch build on supported Linux/Windows systems, replace `/cpu` with `/cu118`
+in the PyTorch install command; a compatible NVIDIA driver is required.
+The CPU/CUDA local version suffix satisfies `torch==2.1.2` in the requirements.
+
+`requirements.txt` contains the dependencies used by this public data-preparation
+code, including SciPy for loading sparse feature matrices in trusted pickles.
+PyG extensions, plotting tools and other unused packages from the original
+environment are not needed here. `environment_full.yml` is retained as a historical
+training-environment export, not as a tested installation recipe.
+
+Validated on Linux x86_64 with Python 3.10.22 and PyTorch 2.1.2+cpu: clean
+installation, `pip check`, all three CLI help commands, and synthetic sparse-pickle
+conversion followed by all six train/test shift exports. CUDA, other platforms
+and full dataset experiments were not tested in this dependency check.
 
 To convert other datasets, see `python -m scripts.import_base --help`. The source files are obtained from third-party repositories. Only load `.pickle` data from sources you trust.
 
